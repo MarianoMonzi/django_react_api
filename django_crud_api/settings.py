@@ -27,22 +27,17 @@ SECRET_KEY = 'django-insecure-wv!av9k%f+nvn82l66lrmqz&r5i2myeck4dr@#_234b6(jbnx1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'web-production-b9dde.up.railway.app']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'corsheaders',
-    'rest_framework',
-    'coreapi',
-    'farms'
+    "django.contrib.admin", "django.contrib.auth",
+    "django.contrib.contenttypes", "django.contrib.sessions",
+    "django.contrib.messages", "django.contrib.staticfiles",
+    'whitenoise.runserver_nostatic', "corsheaders", "rest_framework",
+    "coreapi", "farms"
 ]
 
 MIDDLEWARE = [
@@ -62,7 +57,7 @@ ROOT_URLCONF = 'django_crud_api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'client', 'dist')],
+        'DIRS': [os.path.join(BASE_DIR, "client", "dist")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,6 +121,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'client', 'dist')
 ]
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -138,7 +135,6 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 CSRF_TRUSTED_ORIGINS = ["http://*", "https://web-production-b9dde.up.railway.app"]
